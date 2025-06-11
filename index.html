@@ -18,7 +18,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -29,55 +29,62 @@
 
         .input-section {
             background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .input-section h1 {
             color: #6c5ce7;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-size: 1.8em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .input-section p {
             color: #2d3436;
             margin-bottom: 20px;
-            font-size: 1.2em;
+            font-size: 1em;
         }
 
         .input-box {
-            padding: 15px 20px;
-            font-size: 1.5em;
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 15px;
+            font-size: 1.2em;
             border: 3px solid #a29bfe;
             border-radius: 15px;
             text-align: center;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
         .input-box:focus {
             outline: none;
             border-color: #6c5ce7;
             box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .submit-btn {
             background: linear-gradient(45deg, #fd79a8, #fdcb6e);
             color: white;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 12px 25px;
+            font-size: 1em;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 250px;
         }
 
         .submit-btn:hover {
@@ -231,8 +238,8 @@
         </div>
 
         <div class="letter-container hidden" id="letterContainer">
-            <div class="letter-line" style="animation-delay: 0.5s;"><B>A happy and heartfelt 50th birthday to you po, Tita Ghie!</B> 🎉✨</div>
-            <div class="letter-line" style="animation-delay: 1s;">I want to sincerely thank you for bringing into this world one of the most reliable, joyful, and creative friends I've ever known—Maria. 💖</div>
+            <div class="letter-line" style="animation-delay: 0.5s;"><B>A very happy and heartfelt 50th birthday to you po, Tita Ghie!</B> 🎉✨</div>
+            <div class="letter-line" style="animation-delay: 1s;">I want to sincerely thank you for giving life to one of the most reliable, joyful, and creative friends I've ever known—Maria. 💖</div>
             <div class="letter-line" style="animation-delay: 1.5s;">Her presence brings so much color and laughter into our circle. There's never a dull moment when she's around, and it's truly a gift to have someone like her in our lives. 🌈😊</div>
             <div class="letter-line" style="animation-delay: 2s;"><I>Basag ang pula at kalog pero maasahan at responsable.</I> 😄</div>
             <div class="letter-line" style="animation-delay: 2.5s;">This perfectly describes the Maria we know and love—playful and energetic, yet grounded and dependable when it matters most. 🌟</div>
@@ -243,9 +250,9 @@
 
         <div class="friends-section hidden" id="friendsSection">
             <div class="friends-photo">
-                <img src="static/img.jpg" alt="Lagoon">
-                <img src="static/igm.jpg" alt="Cubao">
-                <img src="static/gmi.jpg" alt="Antipolo">
+                <img src="static/img.jpg" alt="Friends with Maria">
+                <img src="static/igm.jpg" alt="Friends with Maria">
+                <img src="static/gmi.jpg" alt="Friends with Maria">
             </div>
             <div class="friends-text">
                 Ipagtanong nyo na lang po kami kay Maria kung sino kami HAHAHAHA 😂

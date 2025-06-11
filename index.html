@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Greeting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .input-section h1 {
+            color: #6c5ce7;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-section p {
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .input-box {
+            padding: 15px 20px;
+            font-size: 1.5em;
+            border: 3px solid #a29bfe;
+            border-radius: 15px;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #6c5ce7;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+            transform: scale(1.05);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .letter-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: 3px solid #fab1a0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .letter-line {
+            font-size: 1.3em;
+            color: #2d3436;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .friends-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #fd79a8;
+        }
+
+        .friends-photo {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .friends-photo img {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid #fd79a8;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .friends-photo img:hover {
+            transform: scale(1.05);
+        }
+
+        .friends-text {
+            color: #2d3436;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .error-message {
+            color: #e17055;
+            font-size: 1.2em;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border: 2px solid #e17055;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #fd79a8;
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="input-section" id="inputSection">
+            <h1>🎉 Birthday Magic 🎉</h1>
+            <p>Please input the magical numbers</p>
+            <input type="text" class="input-box" id="magicNumbers" placeholder="Enter 8 digits" maxlength="8">
+            <br>
+            <button class="submit-btn" onclick="checkNumbers()">✨ Reveal the Magic ✨</button>
+            <div class="error-message hidden" id="errorMessage">
+                Oops! It seems that your magic numbers are incorrect.
+            </div>
+        </div>
+
+        <div class="letter-container hidden" id="letterContainer">
+            <div class="letter-line" style="animation-delay: 0.5s;"><B>A happy and heartfelt 50th birthday to you po, Tita Ghie!</B> 🎉✨</div>
+            <div class="letter-line" style="animation-delay: 1s;">I want to sincerely thank you for bringing into this world one of the most reliable, joyful, and creative friends I've ever known—Maria. 💖</div>
+            <div class="letter-line" style="animation-delay: 1.5s;">Her presence brings so much color and laughter into our circle. There's never a dull moment when she's around, and it's truly a gift to have someone like her in our lives. 🌈😊</div>
+            <div class="letter-line" style="animation-delay: 2s;"><I>Basag ang pula at kalog pero maasahan at responsable.</I> 😄</div>
+            <div class="letter-line" style="animation-delay: 2.5s;">This perfectly describes the Maria we know and love—playful and energetic, yet grounded and dependable when it matters most. 🌟</div>
+            <div class="letter-line" style="animation-delay: 3s;">Please know that your daughter is deeply valued. She is appreciated for who she is, and I can assure you that she is in good hands—surrounded by people who see her worth and cherish her presence. 💝</div>
+            <div class="letter-line" style="animation-delay: 3.5s;">Once again, <B>Maogmang Kompleaño, Tita Ghie!</B> May all your wishes come true, and may your days ahead be filled with joy, abundance, and fulfillment. 🎂🎈</div>
+            <div class="letter-line" style="animation-delay: 4s;">Enjoy your special day po! ^-^ 🥳💕</div>
+        </div>
+
+        <div class="friends-section hidden" id="friendsSection">
+            <div class="friends-photo">
+                <img src="static/img.jpg" alt="Lagoon">
+                <img src="static/igm.jpg" alt="Cubao">
+                <img src="static/gmi.jpg" alt="Antipolo">
+            </div>
+            <div class="friends-text">
+                Ipagtanong nyo na lang po kami kay Maria kung sino kami HAHAHAHA 😂
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkNumbers() {
+            const input = document.getElementById('magicNumbers').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const inputSection = document.getElementById('inputSection');
+            const letterContainer = document.getElementById('letterContainer');
+            const friendsSection = document.getElementById('friendsSection');
+
+            if (input === '06121975') {
+                // Hide error message if it was shown
+                errorMessage.classList.add('hidden');
+                
+                // Hide input section
+                inputSection.classList.add('hidden');
+                
+                // Show letter container
+                letterContainer.classList.remove('hidden');
+                
+                // Show friends section after letter animation
+                setTimeout(() => {
+                    friendsSection.classList.remove('hidden');
+                }, 5000);
+                
+                // Start floating hearts animation
+                createFloatingHearts();
+            } else {
+                // Show error message
+                errorMessage.classList.remove('hidden');
+                
+                // Clear input
+                document.getElementById('magicNumbers').value = '';
+            }
+        }
+
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heartsContainer.appendChild(heart);
+                
+                // Remove heart after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 500);
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('magicNumbers').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkNumbers();
+            }
+        });
+    </script>
+</body>
+</html>
